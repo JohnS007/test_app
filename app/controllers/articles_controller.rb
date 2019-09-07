@@ -7,10 +7,17 @@ class ArticlesController < ApplicationController
   def create
     # render plain: params[:article].inspect
     @article = Article.new(article_params) # white list the article parameters through article_params function.
-    @article.save                          # saving the article after white-listing the parameters.
-    redirect_to articles_show(@article)    # redirect to articles show action and pass the article to the
+    if @article.save                          # saving the article after white-listing the parameters.
+      flash[:notice] = "Article was successfully created"
+      redirect_to article_path(@article)    # redirect to articles show action and pass the article to the
+    else
+      render 'new'
+    end
   end
 
+  def show
+    @article = Article.find(params[:id])
+  end
   private
     def article_params
       params.require(:article).permit(:title, :description) # grab the params hash passed by the new action, require the top level
