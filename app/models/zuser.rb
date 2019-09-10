@@ -1,0 +1,3 @@
+class Zuser < ApplicationRecord
+
+end
