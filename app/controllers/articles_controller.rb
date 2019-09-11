@@ -15,6 +15,7 @@ class ArticlesController < ApplicationController
   def create
     # render plain: params[:article].inspect
     @article = Article.new(article_params) # white list the article parameters through article_params function.
+    @article.zuser = Zuser.first
     if @article.save                          # saving the article after white-listing the parameters.
       flash[:notice] = "Article was successfully created"
       redirect_to article_path(@article)    # redirect to articles show action and pass the article to the show method
