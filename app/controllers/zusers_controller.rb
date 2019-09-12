@@ -28,6 +28,10 @@ class ZusersController < ApplicationController
     end
   end
 
+  def show
+    @zuser = Zuser.find(params[:id])
+  end
+
   private
   def zuser_params
     params.require(:zuser).permit(:username, :email, :password)
