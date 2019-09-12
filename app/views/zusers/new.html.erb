@@ -1,0 +1,28 @@
+<h1 align="center">Signup for Blog</h1>
+<% if @zuser.errors.any?%>
+<h2>The following errors prevented the article from getting created</h2>
+<ul>
+  <%@zuser.errors.full_messages.each do |msg|%>
+    <li><%= msg %></li>
+  <% end %>
+</ul>
+<% end%>
+<%= form_for @zuser do |f| %>
+  <p>
+    <%= f.label :username%> <br>
+    <%= f.text_field :username%>
+  </p>
+  <p>
+    <%= f.label :email %> <br>
+    <%= f.email_field :email %>
+  </p>
+
+  <p>
+    <%= f.label :password %> <br>
+    <%= f.password_field :password %>
+  </p>
+
+  <p>
+    <%= f.submit "Sign Up" %>
+  </p>
+<% end %>
