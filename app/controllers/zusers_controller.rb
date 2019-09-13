@@ -1,5 +1,9 @@
 class ZusersController < ApplicationController
 
+  def index
+    @zusers = Zuser.all
+  end
+
   def new
     @zuser = Zuser.new
   end

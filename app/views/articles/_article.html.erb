@@ -9,7 +9,7 @@
   </tr>
 <% obj.each do |article| %>
   <tr>
-    <td><%= article.title %></td>
+    <td><%= article.title %></td><br>
     <td><%= article.description %></td>
     <td><small> Created by: <%= article.zuser.username if article.zuser %>,
         <%= time_ago_in_words(article.created_at) %> ago, last updated:

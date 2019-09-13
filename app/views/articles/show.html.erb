@@ -1,12 +1,18 @@
-<h2>Showing the created article</h2>
-
-<p>
+<h2 align = "center">Showing the created article</h2>
+  <div align = "center">
+    <ul style = "list-style:none;">
+      <li><%= link_to gravatar_for(@article.zuser),  zuser_path(@article.zuser)%></li>
+      <li><%= link_to @article.zuser.username, zuser_path(@article.zuser)%></li>
+      <li><small><%= pluralize(@article.zuser.articles.count, "article") if @article.zuser.articles%></small></li>
+    </ul>
+  </div>
+<p align = "center">
   Title: <%= @article.title%>
 </p>
 
-<p>
+<p align = "center">
   Description: <%= @article.description%>
 </p>
 
-<%= link_to "Edit this article", edit_article_path(@article) %> |
-<%= link_to "Back to Articles listing", articles_path %>
+<p align = "center"><%= link_to "Edit this article", edit_article_path(@article) %> |
+<%= link_to "Back to Articles listing", articles_path %></p>
