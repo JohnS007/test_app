@@ -1,8 +1,9 @@
 class ArticlesController < ApplicationController
+
   before_action :set_article, only: [:edit, :update, :destroy, :show]
 
   def index
-    @articles = Article.all
+    @articles = Article.paginate(page: params[:page], per_page: 5)  #paginating the articles, 5 articles, per_page
   end
 
   def new

@@ -4,4 +4,12 @@
 </div>
 
 <h4 align = "center"> <%= @zuser.username %>'s articles</h4>
-<%= render 'articles/article', obj: @zuser.articles %>
+<div align = "center">
+  <%= will_paginate @zuser_articles%>
+</div>
+
+<%= render 'articles/article', obj: @zuser_articles %>
+
+<div align = "center">
+  <%= will_paginate @zuser_articles%>
+</div>

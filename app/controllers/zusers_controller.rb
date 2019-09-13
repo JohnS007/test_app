@@ -34,6 +34,7 @@ class ZusersController < ApplicationController
 
   def show
     @zuser = Zuser.find(params[:id])
+    @zuser_articles = @zuser.articles.paginate(page: params[:page], per_page: 3)
   end
 
   private
