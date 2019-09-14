@@ -14,8 +14,9 @@ class ZusersController < ApplicationController
   def create
     @zuser = Zuser.new(zuser_params)
     if @zuser.save
+      session[:user_id] = @zuser.id
       flash[:success] = "Welcome to the Blog, #{@zuser.username}"
-      redirect_to articles_path
+      redirect_to zuser_path(@zuser)
     else
       render 'new'
     end
