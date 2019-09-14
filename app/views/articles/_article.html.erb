@@ -14,9 +14,11 @@
     <td><small> Created by: <%= article.zuser.username if article.zuser %>,
         <%= time_ago_in_words(article.created_at) %> ago, last updated:
         <%= time_ago_in_words(article.updated_at) %> ago </small></td>
-    <td><%= link_to "Edit", edit_article_path(article)%></td>
     <td><%= link_to "Show", article_path(article)%></td>
+    <% if logged_in? && current_zuser == article.zuser %>
+    <td><%= link_to "Edit", edit_article_path(article)%></td>
     <td><%= link_to "Delete", article_path(article), method: :delete, data: {confirm: "Are you sure?"}%></td>
+    <% end %>
   </tr>
 <% end %>
 </table>

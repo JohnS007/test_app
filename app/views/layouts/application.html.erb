@@ -11,6 +11,17 @@
 
   <body>
     <%= render 'layouts/messages' %>
+    <% if logged_in? %>
+      <%= link_to 'Logout', logout_path, method: :delete%> | <%= link_to 'New Article', new_article_path %>| <%= link_to 'Articles', articles_path %> | <%= link_to 'Users', zusers_path %>
+    <% else %>
+      <%= link_to 'Login', login_path%> | <%= link_to 'Sign up', signup_path %> | <%= link_to 'Articles', articles_path %> | <%= link_to 'Users', zusers_path %>
+    <% end %>
+    <% if logged_in? %>
+      <ul style = "float:right;">
+        <li><%= link_to 'Edit your profile', edit_zuser_path(current_zuser)%></li>
+        <li><%= link_to 'View your profile', zuser_path(current_zuser)%></li>
+      </ul>
+    <% end %>
     <%= yield %>
     <%= debug(params) if Rails.env.development? %>
   </body>
