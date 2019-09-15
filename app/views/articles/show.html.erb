@@ -13,7 +13,7 @@
 <p align = "center">
   Description: <%= @article.description%>
 </p>
-<% if logged_in? && current_zuser = @article.zuser%>
-<p align = "center"><%= link_to "Edit this article", edit_article_path(@article) %> | <%= link_to "Delete", article_path(@article), method: :delete, data: {confirm: "Are you sure?"}%></p> 
+<% if logged_in? && (current_zuser = @article.zuser || current_zuser.admin?)%>
+<p align = "center"><%= link_to "Edit this article", edit_article_path(@article) %> | <%= link_to "Delete", article_path(@article), method: :delete, data: {confirm: "Are you sure?"}%></p>
 <% end %>
 <p align = "center"><%= link_to "Back to Articles listing", articles_path %></p>

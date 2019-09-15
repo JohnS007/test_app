@@ -5,6 +5,9 @@
       <li><%= link_to gravatar_for(zuser),  zuser_path(zuser)%></li>
       <li><%= link_to zuser.username, zuser_path(zuser)%></li>
       <li><small><%= pluralize(zuser.articles.count, "article") if zuser.articles%></small></li>
+      <% if logged_in? and current_zuser.admin? %>
+        <li><%= link_to "Delete this User", zuser_path(zuser), method: :delete, data: {confirm: "Are you sure you want to delete the user and all its articles ?"} %></li>
+      <% end %>
     </ul>
   </div>
 <% end %>

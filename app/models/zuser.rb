@@ -1,5 +1,5 @@
 class Zuser < ApplicationRecord
-  has_many :articles # setting up one-to-many association between user and articles, user is the one side.
+  has_many :articles, dependent: :destroy # setting up one-to-many association between user and articles, user is the one side.
   before_save {self.email = email.downcase} # before the user is saved the email id is converted to downcase, also enforcing the uniqueness.
   validates :username, presence: true,
              uniqueness: {case_sensitive: false},
@@ -9,5 +9,5 @@ class Zuser < ApplicationRecord
             uniqueness: {case_sensitive: false},
             length: {maximum: 105},
             format: {with: VALID_EMAIL_REGEX}
-  has_secure_password          
+  has_secure_password
 end

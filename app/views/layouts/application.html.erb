@@ -18,6 +18,7 @@
     <% end %>
     <% if logged_in? %>
       <ul style = "float:right;">
+        <li><%= "Admin" if current_zuser.admin?%></li>
         <li><%= link_to 'Edit your profile', edit_zuser_path(current_zuser)%></li>
         <li><%= link_to 'View your profile', zuser_path(current_zuser)%></li>
       </ul>
