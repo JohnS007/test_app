@@ -17,6 +17,7 @@ class ZusersController < ApplicationController
     if @zuser.save
       session[:user_id] = @zuser.id
       flash[:success] = "Welcome to the Blog, #{@zuser.username}"
+      NotificationsMailer.signup(@zuser).deliver_now
       redirect_to zuser_path(@zuser)
     else
       render 'new'
