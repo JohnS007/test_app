@@ -15,10 +15,10 @@ class ZusersController < ApplicationController
   def create
     @zuser = Zuser.new(zuser_params)
     if @zuser.save
-      session[:user_id] = @zuser.id
-      flash[:success] = "Welcome to the Blog, #{@zuser.username}"
-      NotificationsMailer.signup(@zuser).deliver_now
-      redirect_to zuser_path(@zuser)
+      # session[:user_id] = @zuser.id
+      flash[:success] = "Hello, #{@zuser.username} please confirm your email address to continue"
+      UserMailer.registration_confirmation(@zuser).deliver
+      redirect_to root_path
     else
       render 'new'
     end
@@ -44,6 +44,19 @@ class ZusersController < ApplicationController
   end
   def show
     @zuser_articles = @zuser.articles.paginate(page: params[:page], per_page: 3)
+  end
+
+  def confirm_email
+    user = Zuser.find_by_confirm_token(params[:id])
+    if user
+      user.email_activate
+      flash[:success] = "Welcome to the Test App! Your email has been confirmed.
+      Please sign in to continue."
+      redirect_to login_path
+    else
+      flash[:error] = "Sorry. User does not exist"
+      redirect_to root_path
+    end
   end
 
   private

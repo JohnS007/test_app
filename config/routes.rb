@@ -5,6 +5,14 @@ Rails.application.routes.draw do
   get 'signup', to: 'zusers#new'
   # post 'zusers', to: 'zusers#create'
   resources :zusers, except: [:new]
+
+  # Email confirmation routes
+  resources :zusers do
+    member do
+      get :confirm_email
+    end
+  end
+
   resources :articles #gives the routes for articles controller.
 
   get 'login', to: 'sessions#new'
